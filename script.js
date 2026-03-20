@@ -4,18 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const enterBtn = document.getElementById('enter-site');
   const bgMusic = document.getElementById('bg-music');
 
-  body.classList.add('site-locked');
-
   enterBtn?.addEventListener('click', async () => {
+    enterBtn.disabled = true;
+    enterBtn.textContent = 'ACESSANDO...';
+
     try {
-      bgMusic.volume = 0.35;
+      bgMusic.volume = 0.32;
       await bgMusic.play();
     } catch (err) {
-      console.warn('Não foi possível iniciar o áudio automaticamente após clique:', err);
+      console.warn('Falha ao iniciar música:', err);
     }
 
+    body.classList.add('unlocked');
     overlay.classList.add('hidden');
     body.classList.remove('site-locked');
+
+    setTimeout(() => {
+      if (overlay) overlay.style.display = 'none';
+    }, 1100);
   });
 
   const items = document.querySelectorAll('.reveal');
@@ -38,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const subtitle = document.getElementById('rotating-line');
   let idx = 0;
-
   setInterval(() => {
     idx = (idx + 1) % lines.length;
     subtitle.classList.add('opacity-0');
