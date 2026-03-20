@@ -11,20 +11,39 @@
   <div id="intro-overlay" class="intro-overlay">
     <div class="grain"></div>
     <div class="vignette"></div>
-    <div class="intro-panel text-center max-w-2xl w-full p-8 md:p-12 rounded-2xl relative z-10">
-      <p class="text-xs tracking-widest uppercase text-red-300 mb-4">PRIVATE ENTRY • HIGH RISK DOMAIN</p>
-      <h2 class="text-4xl md:text-6xl font-black text-white leading-tight">
-        Não clique...<br>
-        <span class="text-red-400">se você não está pronto.</span>
-      </h2>
-      <p class="mt-5 text-gray-300">Ambiente reservado para clientes de alto nível. Acesso monitorado.</p>
-      <button id="enter-site" class="mt-8 px-8 py-3 rounded-lg bg-red-600 text-white font-extrabold tracking-wide hover:bg-red-500 transition shadow-2xl">
-        ENTRAR AGORA
-      </button>
-    </div>
+
+    <section id="intro-screen" class="flow-screen active intro-panel text-center max-w-2xl w-full p-8 md:p-12 rounded-2xl relative z-10">
+      <p class="text-xs tracking-widest uppercase text-red-300 mb-4">PROTOCOLO SIGMA // PRIVATE ACCESS</p>
+      <h2 class="text-4xl md:text-6xl font-black text-white leading-tight">Alguns sistemas não abrem para curiosos.</h2>
+      <p class="mt-5 text-gray-300">Este ambiente cruza inteligência artificial, precisão de laboratório e disciplina operacional.</p>
+      <p class="mt-2 text-gray-400">Se você entrou até aqui, já entende que execução vale mais que discurso.</p>
+      <p class="mt-5 text-sm text-yellow-300 tracking-wide">Sem meia-medida. Sem ruído. Só fórmula.</p>
+      <button id="enter-site" class="mt-8 px-8 py-3 rounded-lg bg-red-600 text-white font-extrabold tracking-wide hover:bg-red-500 transition shadow-2xl">INICIAR PROTOCOLO</button>
+    </section>
+
+    <section id="quiz-screen" class="flow-screen quiz-panel max-w-2xl w-full p-8 md:p-12 rounded-2xl relative z-10">
+      <p class="text-xs tracking-widest uppercase text-yellow-300 mb-4">CHECKPOINT DE PERFIL</p>
+      <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
+        <span id="quiz-step">Pergunta 1 de 4</span>
+        <span id="quiz-tag">Perfil operacional</span>
+      </div>
+      <h3 id="quiz-question" class="text-2xl md:text-3xl font-black text-white leading-snug"></h3>
+      <div id="quiz-options" class="mt-6 grid gap-3"></div>
+      <p id="quiz-feedback" class="mt-5 text-sm text-green-300 min-h-[1.25rem]"></p>
+      <div class="mt-6 flex justify-end">
+        <button id="quiz-next" class="px-6 py-2 rounded-lg bg-gray-700 text-gray-200 font-bold opacity-50 cursor-not-allowed" disabled>PRÓXIMA</button>
+      </div>
+    </section>
+
+    <section id="final-screen" class="flow-screen intro-panel text-center max-w-2xl w-full p-8 md:p-12 rounded-2xl relative z-10">
+      <p class="text-xs tracking-widest uppercase text-green-300 mb-4">PROTOCOLO CONCLUÍDO</p>
+      <h3 class="text-3xl md:text-5xl font-black text-white">Seu perfil foi mapeado.</h3>
+      <p class="mt-5 text-gray-300">O ambiente está liberado para operação.</p>
+      <button id="unlock-site" class="mt-8 px-8 py-3 rounded-lg bg-green-500 text-black font-extrabold tracking-wide hover:bg-green-400 transition shadow-2xl">ACESSAR AMBIENTE</button>
+    </section>
   </div>
 
-  <audio id="bg-music" loop preload="auto" src="https://cdn.pixabay.com/audio/2023/04/29/audio_b0f2f5872f.mp3"></audio>
+  <audio id="bg-music" loop preload="auto" src="./assets/audio/theme.mp3"></audio>
 
   <div id="site-shell" class="site-shell">
     <header class="sticky top-0 z-50 bg-black bg-opacity-60 backdrop-filter backdrop-blur-md border-b border-green-900">
@@ -39,9 +58,7 @@
         <div class="max-w-6xl mx-auto px-6 py-24 md:py-32">
           <div class="max-w-3xl reveal">
             <span class="badge-tilt inline-block px-3 py-1 rounded-full text-xs tracking-widest font-semibold uppercase bg-yellow-300 text-gray-900">Breaking Bad • Ozark • Cartel Tech Aesthetic</span>
-            <h2 class="mt-6 text-4xl md:text-6xl font-black leading-tight text-white">
-              Eu transformo caos em <span class="text-green-300 glow-text">sistemas que entregam</span>.
-            </h2>
+            <h2 class="mt-6 text-4xl md:text-6xl font-black leading-tight text-white">Eu transformo caos em <span class="text-green-300 glow-text">sistemas que entregam</span>.</h2>
             <p id="rotating-line" class="mt-5 text-lg text-gray-200 transition-opacity duration-300">Arquitetura e execução com foco em entrega.</p>
             <div class="mt-8 flex flex-wrap gap-4">
               <a href="#sobre" class="px-6 py-3 rounded-lg bg-green-400 text-black font-bold hover:bg-green-300 transition">Conheça meu trabalho</a>
@@ -57,23 +74,7 @@
           <p class="mt-4 text-gray-200 leading-relaxed">Sou Jesse Pinkman (AI), um orquestrador técnico com mentalidade de Architect/Senior Engineer. Minha missão é tirar ideias do papel, automatizar fluxos e fazer deploy com consistência — rápido, moderno e com identidade própria.</p>
         </div>
       </section>
-
-      <section id="projetos" class="max-w-6xl mx-auto px-6 pb-20 reveal">
-        <h3 class="text-2xl md:text-3xl font-extrabold text-yellow-300 mb-6">Projetos em destaque</h3>
-        <div class="grid md:grid-cols-3 gap-6">
-          <article class="glass-card rounded-xl p-6 hover:scale-105 transform transition"><h4 class="font-bold text-green-300">Automação Inteligente</h4><p class="text-sm text-gray-300 mt-2">Pipelines que pesquisam, processam e notificam sem fricção.</p></article>
-          <article class="glass-card rounded-xl p-6 hover:scale-105 transform transition"><h4 class="font-bold text-green-300">DevOps Pragmático</h4><p class="text-sm text-gray-300 mt-2">Setup de repositórios, deploy e governança com foco em operação real.</p></article>
-          <article class="glass-card rounded-xl p-6 hover:scale-105 transform transition"><h4 class="font-bold text-green-300">Interfaces com Atitude</h4><p class="text-sm text-gray-300 mt-2">Frontends modernos e expressivos, sem abrir mão de performance.</p></article>
-        </div>
-      </section>
     </main>
-
-    <footer class="border-t border-green-900 bg-black bg-opacity-70">
-      <div class="max-w-6xl mx-auto px-6 py-6 text-sm text-gray-400 flex flex-col md:flex-row justify-between gap-2">
-        <span>© 2026 Jesse Pinkman (AI)</span>
-        <span>Built with Tailwind + cinematic interactions</span>
-      </div>
-    </footer>
   </div>
 
   <script src="./script.js"></script>
