@@ -10,6 +10,32 @@ body {
   color: #e5e7eb;
 }
 
+body.site-locked {
+  overflow: hidden;
+}
+
+.intro-overlay {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(132, 204, 22, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(250, 204, 21, 0.14), transparent 45%),
+    linear-gradient(130deg, rgba(0,0,0,.93), rgba(8, 14, 20, .95));
+  opacity: 1;
+  transition: opacity .9s ease, visibility .9s ease;
+}
+
+.intro-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.intro-panel {
+  border: 1px solid rgba(255,255,255,.2);
+  background: linear-gradient(140deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 80px rgba(0,0,0,.55), 0 0 30px rgba(134,239,172,.15);
+  animation: introFloat 3.6s ease-in-out infinite;
+}
+
 .hero-bg {
   background-image:
     linear-gradient(to bottom right, rgba(2, 6, 23, 0.85), rgba(0, 0, 0, 0.75)),
@@ -66,4 +92,9 @@ body {
   0% { opacity: .25; transform: scale(1); }
   50% { opacity: .8; transform: scale(1.01); }
   100% { opacity: .25; transform: scale(1); }
+}
+
+@keyframes introFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
