@@ -1,8 +1,7 @@
 :root {
   --neon-green: #86efac;
   --toxic-yellow: #facc15;
-  --deep-black: #060b0a;
-  --smoke: rgba(255, 255, 255, 0.08);
+  --deep-black: #030303;
 }
 
 body {
@@ -10,54 +9,81 @@ body {
   color: #e5e7eb;
 }
 
-body.site-locked {
-  overflow: hidden;
+body.site-locked { overflow: hidden; }
+
+.site-shell {
+  opacity: 0;
+  transform: scale(1.015);
+  filter: blur(6px) saturate(0.7);
+  transition: opacity .9s ease, transform .9s ease, filter .9s ease;
+}
+
+body.unlocked .site-shell {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0) saturate(1);
 }
 
 .intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
   background:
-    radial-gradient(circle at 20% 20%, rgba(132, 204, 22, 0.18), transparent 45%),
-    radial-gradient(circle at 80% 80%, rgba(250, 204, 21, 0.14), transparent 45%),
-    linear-gradient(130deg, rgba(0,0,0,.93), rgba(8, 14, 20, .95));
-  opacity: 1;
-  transition: opacity .9s ease, visibility .9s ease;
+    radial-gradient(circle at 20% 10%, rgba(95, 0, 0, .45), transparent 45%),
+    radial-gradient(circle at 80% 90%, rgba(32, 0, 0, .65), transparent 55%),
+    linear-gradient(130deg, rgba(0,0,0,.98), rgba(8,8,8,.95));
+  transition: opacity 1s ease, visibility 1s ease;
 }
 
-.intro-overlay.hidden {
-  opacity: 0;
-  visibility: hidden;
+.intro-overlay.hidden { opacity: 0; visibility: hidden; }
+
+.grain,
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.grain {
+  opacity: .16;
+  background-image: radial-gradient(circle, rgba(255,255,255,.2) 1px, transparent 1px);
+  background-size: 3px 3px;
+  animation: noiseShift .35s steps(2) infinite;
+}
+
+.vignette {
+  box-shadow: inset 0 0 180px rgba(0,0,0,.95), inset 0 0 60px rgba(0,0,0,.8);
 }
 
 .intro-panel {
-  border: 1px solid rgba(255,255,255,.2);
-  background: linear-gradient(140deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 80px rgba(0,0,0,.55), 0 0 30px rgba(134,239,172,.15);
-  animation: introFloat 3.6s ease-in-out infinite;
+  border: 1px solid rgba(255, 80, 80, .25);
+  background: linear-gradient(160deg, rgba(20,20,20,.9), rgba(0,0,0,.82));
+  backdrop-filter: blur(8px);
+  box-shadow: 0 20px 80px rgba(0,0,0,.8), 0 0 80px rgba(120,0,0,.35);
+  animation: panelBreath 3.2s ease-in-out infinite;
 }
 
 .hero-bg {
   background-image:
-    linear-gradient(to bottom right, rgba(2, 6, 23, 0.85), rgba(0, 0, 0, 0.75)),
+    linear-gradient(to bottom right, rgba(0,0,0,.85), rgba(3, 8, 13, .82)),
     url('./assets/bg-lab.svg');
   background-size: cover;
   background-position: center;
 }
 
-.glow-text {
-  text-shadow: 0 0 10px rgba(134, 239, 172, 0.5), 0 0 24px rgba(134, 239, 172, 0.35);
-}
+.glow-text { text-shadow: 0 0 10px rgba(134, 239, 172, 0.45), 0 0 24px rgba(134, 239, 172, 0.3); }
 
 .glass-card {
-  background: linear-gradient(140deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(140deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.13);
   backdrop-filter: blur(8px);
 }
 
-.pulse-border {
-  position: relative;
-}
-
+.pulse-border { position: relative; }
 .pulse-border::after {
   content: '';
   position: absolute;
@@ -68,25 +94,15 @@ body.site-locked {
   pointer-events: none;
 }
 
-.badge-tilt {
-  transform: rotate(-2deg);
-  transition: transform .3s ease;
-}
-
-.badge-tilt:hover {
-  transform: rotate(0deg) scale(1.03);
-}
+.badge-tilt { transform: rotate(-2deg); transition: transform .3s ease; }
+.badge-tilt:hover { transform: rotate(0deg) scale(1.03); }
 
 .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: all .7s ease;
 }
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.show { opacity: 1; transform: translateY(0); }
 
 @keyframes pulse {
   0% { opacity: .25; transform: scale(1); }
@@ -94,7 +110,15 @@ body.site-locked {
   100% { opacity: .25; transform: scale(1); }
 }
 
-@keyframes introFloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+@keyframes panelBreath {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.01); }
+}
+
+@keyframes noiseShift {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(-1%, 1%); }
+  50% { transform: translate(1%, -1%); }
+  75% { transform: translate(1%, 1%); }
+  100% { transform: translate(0,0); }
 }
