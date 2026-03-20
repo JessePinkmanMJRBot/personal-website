@@ -1,0 +1,1 @@
+As tarefas de web search e pesquisa devem ser delegadas ao Gale utilizando o r.jina.
