@@ -1,6 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const items = document.querySelectorAll('.reveal');
+  const body = document.body;
+  const overlay = document.getElementById('intro-overlay');
+  const enterBtn = document.getElementById('enter-site');
+  const bgMusic = document.getElementById('bg-music');
 
+  body.classList.add('site-locked');
+
+  enterBtn?.addEventListener('click', async () => {
+    try {
+      bgMusic.volume = 0.35;
+      await bgMusic.play();
+    } catch (err) {
+      console.warn('Não foi possível iniciar o áudio automaticamente após clique:', err);
+    }
+
+    overlay.classList.add('hidden');
+    body.classList.remove('site-locked');
+  });
+
+  const items = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
